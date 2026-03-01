@@ -1,0 +1,81 @@
+# ===== Secrets / local config =====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+secrets.yml
+secret*.yml
+
+# If these contain real tokens, keep local only
+credentials.yml
+endpoints.yml
+!credentials.example.yml
+!endpoints.example.yml
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Virtual envs
+.venv/
+venv/
+sarthi-venv/
+rag-venv/
+
+# ===== Rasa / model artifacts =====
+models/
+*.tar.gz
+.rasa/
+events.db
+tracker.db
+*.db
+results/
+cache/
+
+# ===== Local RAG/vector/data artifacts =====
+rag_pipeline/chroma/
+rag_pipeline/chroma_*/
+rag_pipeline/previous_chroma_DB/
+rag_pipeline/DB-backup/
+rag_pipeline/data_source/
+downloaded_pdfs/
+
+# ===== Bundled binaries (install separately) =====
+rag_pipeline/Tesseract-OCR/
+rag_pipeline/poppler/
+
+# ===== Logs / temp =====
+*.log
+logs/
+scraper.log
+
+# ===== Node =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== OS / editor =====
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ===== Agent / AI artifacts =====
+.gemini/
+.agents/
+.agent/
+_agents/
+_agent/

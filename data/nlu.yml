@@ -1,0 +1,173 @@
+version: "3.1"
+nlu:
+  - intent: greet
+    examples: |
+      - hi
+      - hello
+      - hey
+      - good morning
+      - good evening
+      - namaste
+      - namaskar
+      - hello sarathi
+      - hey bot
+      - start
+      - start chat
+      - kya haal hai
+      - hi there
+      - hello ji
+      - namaste sarathi
+
+  - intent: goodbye
+    examples: |
+      - bye
+      - goodbye
+      - see you
+      - see you around
+      - talk to you later
+      - thanks bye
+      - thik hai bye
+      - milte hain
+      - alvida
+      - chat band karo
+
+  - intent: thank_you
+    examples: |
+      - thanks
+      - thank you
+      - thank you so much
+      - great, thanks
+      - got it thanks
+      - bahut dhanyavaad
+      - shukriya
+      - शुक्रिया
+      - धन्यवाद
+      - thanks a lot
+
+  - intent: bot_capabilities
+    examples: |
+      - what can you do
+      - how can you help me
+      - what topics can you answer
+      - can you answer all college queries
+      - what kind of questions should I ask
+      - tum kya help kar sakte ho
+      - aap kya kar sakte ho
+      - तुम किन चीज़ों में मदद कर सकते हो
+      - bot capabilities batao
+      - help
+      - show examples of questions
+
+  - intent: contact_support
+    examples: |
+      - connect me to college staff
+      - I need human support
+      - I want to talk to office
+      - admissions office contact please
+      - helpdesk details do
+      - staff se connect karao
+      - mujhe college office se baat karni hai
+      - kisi representative se baat karni hai
+      - support chahiye
+      - can I contact admin
+
+  - intent: restart_chat
+    examples: |
+      - restart chat
+      - start over
+      - reset conversation
+      - new chat
+      - clear this chat
+      - fir se shuru karo
+      - chat reset karo
+      - nayi conversation start karo
+      - restart
+      - fresh start
+
+  - intent: affirm
+    examples: |
+      - yes
+      - yeah
+      - sure
+      - okay
+      - ok
+      - correct
+      - bilkul
+      - haan
+      - ji
+      - yes please
+
+  - intent: deny
+    examples: |
+      - no
+      - nope
+      - not now
+      - no thanks
+      - nahi
+      - bilkul nahi
+      - skip
+      - leave it
+      - not needed
+      - no, continue here
+
+  - intent: ask_knowledge_question
+    examples: |
+      - What is the admission process for first year students?
+      - Which documents are mandatory during admission verification?
+      - Is there any management quota notification for this year?
+      - What is the fee payment schedule for odd semester?
+      - What is the last date to submit semester fees?
+      - Is there any late fee penalty if I miss the deadline?
+      - How can I apply for EWS financial assistance?
+      - What are the eligibility criteria for EWS support?
+      - What scholarships are available for girls or economically weaker students?
+      - Which documents are needed for scholarship application?
+      - Is income certificate required for scholarship?
+      - What is the exam form fee and submission process?
+      - When will mid semester exams start?
+      - Is there any updated academic calendar notice?
+      - Where can I find class timetable updates?
+      - What are the hostel allotment rules?
+      - What is the hostel fee and refund policy?
+      - Are there anti-ragging guidelines in college documents?
+      - What are the library timings and issue limits?
+      - Is there any notice regarding internships or placements?
+      - What is the grading policy for internal and external marks?
+      - Can I get revaluation rules for end semester exams?
+      - What is the attendance requirement to sit in exams?
+      - Is there any policy for medical leave during exams?
+      - I want the latest circular related to admissions.
+      - show me details about college scholarship deadlines
+      - explain fee refund rules after withdrawal
+      - what is the process for migration certificate
+      - fee payment ki last date kya hai
+      - exam form bharne ka process kya hai
+      - timetable update hua hai kya
+      - scholarship ke liye kaun kaun se documents chahiye
+      - hostel allotment kab hoga
+      - library rules ke baare mein batao
+      - anti ragging affidavit ka process kya hai
+      - backlog exam registration ka notice batao
+      - admission ke time original documents dene padenge kya
+      - rechecking ke liye apply kaise karte hain
+      - canteen timing notice hai kya
+      - sports complex membership policy kya hai
+      - मुझे EWS योजना की पूरी प्रक्रिया बताइए
+      - EWS सहायता के लिए पात्रता मानदंड क्या हैं
+      - छात्रवृत्ति आवेदन की अंतिम तिथि क्या है
+      - फीस जमा करने की आखिरी तारीख क्या है
+      - लेट फीस का नियम क्या है
+      - एडमिशन के लिए किन दस्तावेज़ों की जरूरत है
+      - हॉस्टल आवंटन प्रक्रिया क्या है
+      - परीक्षा फॉर्म जमा करने की प्रक्रिया बताइए
+      - अकादमिक कैलेंडर की नई सूचना क्या है
+      - उपस्थिति कम होने पर परीक्षा में बैठ सकते हैं क्या
+      - रीचेकिंग का नियम क्या है
+      - एंटी रैगिंग निर्देश कहाँ मिलेंगे
+      - लाइब्रेरी का समय और किताब इश्यू सीमा क्या है
+      - कॉलेज नोटिस में स्कॉलरशिप के बारे में क्या लिखा है
+      - admission brochure mein eligibility kya di hai
+      - college circular ke hisab se semester start date kya hai
+      - conveyance ya bus pass policy ka notice hai kya
+      - internship related latest notice batao
+      - grievance redressal policy document me kya hai

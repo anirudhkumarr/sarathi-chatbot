@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarathi — AI Campus Assistant | Demo</title>
+    <meta name="description"
+        content="Sarathi is a RAG-powered, multilingual AI campus assistant that can be injected into any website.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0B0F1A;
+            --bg-card: #141926;
+            --text: #E2E8F0;
+            --text-muted: #94A3B8;
+            --accent: #7C3AED;
+            --accent-2: #3B82F6;
+            --gradient: linear-gradient(135deg, #7C3AED, #3B82F6);
+            --border: rgba(148, 163, 184, 0.1);
+            --font: 'DM Sans', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+                .bg-glow {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-glow::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: -120px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+            animation: drift 12s ease-in-out infinite alternate;
+        }
+
+        .bg-glow::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            bottom: -80px;
+            right: -60px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+            animation: drift 10s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(40px, 30px) scale(1.1);
+            }
+        }
+
+                .container {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+                nav {
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+                .hero {
+            text-align: center;
+            padding: 100px 0 60px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #A78BFA;
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            margin-bottom: 24px;
+            letter-spacing: 0.3px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .grad {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            max-width: 540px;
+            margin: 0 auto;
+            font-size: 17px;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+                .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            padding: 20px 0 60px;
+        }
+
+        .feat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: transform 250ms ease, border-color 250ms ease;
+        }
+
+        .feat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+
+        .feat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
+        .feat-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feat-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+                .code-section {
+            padding: 0 0 80px;
+        }
+
+        .code-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .code-section .sub {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: var(--mono);
+            font-size: 13px;
+            line-height: 1.7;
+            color: #CBD5E1;
+            white-space: pre;
+        }
+
+        .code-block .cm {
+            color: #64748B;
+        }
+
+        .code-block .kw {
+            color: #C084FC;
+        }
+
+        .code-block .str {
+            color: #34D399;
+        }
+
+        .code-block .prop {
+            color: #60A5FA;
+        }
+
+                footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+                @media (max-width: 640px) {
+            .hero {
+                padding: 64px 0 40px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+
+                <nav>
+            <div class="logo"><span>Sarathi</span></div>
+            <div class="nav-badge">Beta v2.0</div>
+        </nav>
+
+                <section class="hero">
+            <div class="hero-tag">🚀 RAG-Powered Campus AI</div>
+            <h1>
+                Meet <span class="grad">Sarathi</span>,<br>
+                Your AI Campus Assistant
+            </h1>
+            <p>
+                A multilingual, document-grounded chatbot you can inject into any website
+                with a single script tag. Powered by Rasa, LangChain, and Gemini.
+            </p>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="feat-card">
+                <div class="feat-icon">💉</div>
+                <h3>Injectable Widget</h3>
+                <p>One script tag, one init call — works on any website without conflicts. Fully scoped CSS.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🔍</div>
+                <h3>RAG-Grounded Answers</h3>
+                <p>Retrieves from your document corpus via ChromaDB embeddings, then generates with Gemini LLM.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">🌐</div>
+                <h3>Multilingual</h3>
+                <p>Handles English, Hindi, and Hinglish queries natively with BGE-M3 multilingual embeddings.</p>
+            </div>
+        </section>
+
+                <section class="code-section">
+            <h2>Quick Integration</h2>
+            <p class="sub">Add Sarathi to your website in two lines.</p>
+            <div class="code-block">
+                <pre><span class="cm">&lt;!-- 1. Add the widget script --&gt;</span>
+<span class="kw">&lt;script</span> <span class="prop">src</span>=<span class="str">"widget/sarathi-widget.js"</span><span class="kw">&gt;&lt;/script&gt;</span>
+
+<span class="cm">&lt;!-- 2. Initialize with your config --&gt;</span>
+<span class="kw">&lt;script&gt;</span>
+  SarathiWidget.<span class="prop">init</span>({
+    <span class="prop">serverUrl</span>: <span class="str">"http://localhost:5005/webhooks/rest/webhook"</span>,
+    <span class="prop">botName</span>:   <span class="str">"Sarathi"</span>,
+    <span class="prop">subtitle</span>:  <span class="str">"AI Campus Assistant"</span>,
+    <span class="prop">greeting</span>:  <span class="str">"Hello! Ask me about admissions, fees, or exams."</span>,
+    <span class="prop">starterPrompts</span>: [
+      <span class="str">"Admission process?"</span>,
+      <span class="str">"Scholarships available?"</span>,
+      <span class="str">"Fee deadlines?"</span>,
+      <span class="str">"Exam schedule?"</span>
+    ]
+  });
+<span class="kw">&lt;/script&gt;</span></pre>
+            </div>
+        </section>
+
+                <footer>
+            Sarathi &mdash; Built with Rasa, LangChain, ChromaDB &amp; Gemini &bull; Beta Build 2026
+        </footer>
+
+    </div>
+
+        <script src="widget/sarathi-widget.js"></script>
+    <script>
+        SarathiWidget.init({
+            serverUrl: "http://localhost:5005/webhooks/rest/webhook",
+            botName: "Sarathi - Campus Assistant",
+            subtitle: "AI Campus Assistant",
+            greeting: "Hello! I\u2019m Sarathi, your AI campus assistant. Ask me about admissions, scholarships, fees, exams, or academics.",
+            starterPrompts: [
+                "What is the admission process?",
+                "Scholarship options available?",
+                "Fee payment deadlines?",
+                "Exam schedule details?"
+            ]
+        });
+    </script>
+
+</body>
+
+</html>

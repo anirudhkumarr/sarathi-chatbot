@@ -1,0 +1,40 @@
+version: "3.1"
+stories:
+  - story: Greet then ask a document question
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_knowledge_question
+      - action: action_retrieve_and_answer
+
+  - story: Ask capabilities then query knowledge base
+    steps:
+      - intent: bot_capabilities
+      - action: utter_capabilities
+      - intent: ask_knowledge_question
+      - action: action_retrieve_and_answer
+
+  - story: Multi turn retrieval questions
+    steps:
+      - intent: ask_knowledge_question
+      - action: action_retrieve_and_answer
+      - intent: ask_knowledge_question
+      - action: action_retrieve_and_answer
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - story: Fallback recovery to support
+    steps:
+      - intent: nlu_fallback
+      - action: utter_nlu_fallback
+      - intent: contact_support
+      - action: utter_contact_support
+
+  - story: Fallback recovery to capabilities then query
+    steps:
+      - intent: nlu_fallback
+      - action: utter_nlu_fallback
+      - intent: deny
+      - action: utter_capabilities
+      - intent: ask_knowledge_question
+      - action: action_retrieve_and_answer

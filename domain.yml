@@ -1,0 +1,54 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - thank_you
+  - bot_capabilities
+  - contact_support
+  - restart_chat
+  - affirm
+  - deny
+  - ask_knowledge_question
+
+actions:
+  - action_retrieve_and_answer
+
+responses:
+  utter_greet:
+    - text: "Hi, I am Sarathi. I can help with college documents like admissions, fees, scholarships, exams, hostel, and notices. What would you like to know?"
+      buttons:
+        - title: "Admissions"
+          payload: "What is the admission process and required documents?"
+        - title: "Scholarships"
+          payload: "What scholarships are available and how can I apply?"
+        - title: "Exam and fees"
+          payload: "What are the exam form and fee payment deadlines?"
+  utter_goodbye:
+    - text: "Thanks for chatting. If you need anything else, ask anytime."
+  utter_thank_you:
+    - text: "You are welcome. If you want, I can also help with deadlines, eligibility criteria, or required documents."
+  utter_capabilities:
+    - text: "I can answer questions from official college documents. Try asking about admissions, fee deadlines, scholarships, hostel, exams, timetable, circulars, or eligibility rules."
+      buttons:
+        - title: "Ask document question"
+          payload: "Tell me about admission eligibility criteria."
+        - title: "Connect to staff"
+          payload: "/contact_support"
+  utter_contact_support:
+    - text: "For staff support, please contact the college help desk or admissions office. Share your exact issue and enrollment details for faster resolution."
+  utter_nlu_fallback:
+    - text: "I could not fully understand that. Please rephrase your question, or choose an option below."
+      buttons:
+        - title: "Ask another way"
+          payload: "Can you help me with a college notice?"
+        - title: "What can you do?"
+          payload: "/bot_capabilities"
+        - title: "Connect to staff"
+          payload: "/contact_support"
+  utter_restart_confirm:
+    - text: "Sure, let us start over. Please ask your question again from the beginning."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false

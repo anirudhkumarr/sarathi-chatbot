@@ -1,0 +1,53 @@
+version: "3.1"
+rules:
+  - rule: Handle greeting
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Handle goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+  
+  - rule: Handle thanks
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - rule: Explain capabilities
+    steps:
+      - intent: bot_capabilities
+      - action: utter_capabilities
+
+  - rule: Provide support handoff
+    steps:
+      - intent: contact_support
+      - action: utter_contact_support
+
+  - rule: Restart conversation
+    steps:
+      - intent: restart_chat
+      - action: utter_restart_confirm
+
+  - rule: Ask the RAG
+    steps:
+      - intent: ask_knowledge_question
+      - action: action_retrieve_and_answer
+
+  - rule: Handle NLU Fallback
+    steps:
+      - intent: nlu_fallback
+      - action: utter_nlu_fallback
+
+  - rule: User confirms support after fallback
+    steps:
+      - action: utter_nlu_fallback
+      - intent: affirm
+      - action: utter_contact_support
+
+  - rule: User denies support after fallback
+    steps:
+      - action: utter_nlu_fallback
+      - intent: deny
+      - action: utter_capabilities
