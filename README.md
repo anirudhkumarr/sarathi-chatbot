@@ -41,8 +41,8 @@ A multilingual, document-grounded chatbot you can inject into any website with a
 ### 1. Clone & Configure
 
 ```bash
-git clone https://github.com/<your-org>/sih-chatbot-sarathi.git
-cd sih-chatbot-sarathi
+git clone https://github.com/<your-org>/sarathi-chatbot.git
+cd sarathi-chatbot
 
 # Create your environment file
 cp .env.example .env
